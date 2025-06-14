@@ -3,6 +3,9 @@
 // Licensed under the Academic Free License version 3.0
 // Auto-generated 15-Mar-2025
 //
+//  History:
+//    2025-06-14 Adam Garnhart - Bug Fixes for equip queries
+//
 
 // AC Electricity meter.
 // See `docHaystack::Meters` chapter.
@@ -328,8 +331,8 @@ Equip: Entity <abstract> {
   siteRef:      Ref
   spaceRef:     Ref?
   systemRef:    MultiRef?
-  parentEquips: Query<of:Point, via:"equipRef+">                  // Parent equips that contain this point
-  childEquips:  Query<of:Point, inverse:"ph::Equip.parentEquips"> // Sub-equips contained by this equip
+  parentEquips: Query<of:Equip, via:"equipRef+">                  // Equips that are referenced by this equip
+  childEquips:  Query<of:Equip, inverse:"ph::Equip.parentEquips"> // Equips that are referencing this equip
   points:       Query<of:Point, inverse:"ph::Point.equips">       // Points contained by this equip
 }
 
