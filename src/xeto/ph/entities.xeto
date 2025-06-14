@@ -4,7 +4,7 @@
 // Auto-generated 15-Mar-2025
 //
 //  History:
-//    2025-06-14 Adam Garnhart - Bug Fixes for equip queries
+//    2025-06-14 Adam Garnhart - Bug Fixes for Equip queries
 //
 
 // AC Electricity meter.
@@ -331,9 +331,9 @@ Equip: Entity <abstract> {
   siteRef:      Ref
   spaceRef:     Ref?
   systemRef:    MultiRef?
-  parentEquips: Query<of:Equip, via:"equipRef+">                  // Equips that are referenced by this equip and all parentEquips
-  childEquips:  Query<of:Equip, inverse:"ph::Equip.parentEquips"> // Equips that are referencing this equip and all childEquips
-  points:       Query<of:Point, inverse:"ph::Point.equips">       // Points that are referencing this equip and all childEquips
+  parentEquips: Query<of:Equip, via:"equipRef+">                  // Returns all parentEquips of this equip
+  childEquips:  Query<of:Equip, inverse:"ph::Equip.parentEquips"> // Returns all childEquips of this equip
+  points:       Query<of:Point, inverse:"ph::Point.equips">       // Returns all childPoints of this equip
 }
 
 // Moving staircase used to move people between floors.
@@ -681,7 +681,7 @@ Point: Entity <abstract> {
   tz:            TimeZone?
   unit:          Unit?
   writable:      Marker?
-  equips:        Query<of:Equip, via:"equipRef+">  // Equips that are referenced by this Point and all parentEquips
+  equips:        Query<of:Equip, via:"equipRef+">  // Returns all parentEquips of this point
 }
 
 // Motor used with a pump to move fluid.
