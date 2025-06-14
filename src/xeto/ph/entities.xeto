@@ -331,9 +331,9 @@ Equip: Entity <abstract> {
   siteRef:      Ref
   spaceRef:     Ref?
   systemRef:    MultiRef?
-  parentEquips: Query<of:Equip, via:"equipRef+">                  // Equips that are referenced by this equip
-  childEquips:  Query<of:Equip, inverse:"ph::Equip.parentEquips"> // Equips that are referencing this equip
-  points:       Query<of:Point, inverse:"ph::Point.equips">       // Points contained by this equip
+  parentEquips: Query<of:Equip, via:"equipRef+">                  // Equips that are referenced by this equip and all parentEquips
+  childEquips:  Query<of:Equip, inverse:"ph::Equip.parentEquips"> // Equips that are referencing this equip and all childEquips
+  points:       Query<of:Point, inverse:"ph::Point.equips">       // Points that are referencing this equip and all childEquips
 }
 
 // Moving staircase used to move people between floors.
@@ -681,7 +681,7 @@ Point: Entity <abstract> {
   tz:            TimeZone?
   unit:          Unit?
   writable:      Marker?
-  equips:        Query<of:Equip, via:"equipRef+">  // Parent equips that contain this point
+  equips:        Query<of:Equip, via:"equipRef+">  // Equips that are referenced by this Point and all parentEquips
 }
 
 // Motor used with a pump to move fluid.
