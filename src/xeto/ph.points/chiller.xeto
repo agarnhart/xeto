@@ -1,1 +1,46 @@
+//
+// Copyright (c) 2025, Project-Haystack
+// Licensed under the Academic Free License version 3.0
+//
+// History:
+//   2025-06-24 Adam Garnhart Creation
+//
 
+///////////////////////////////////////////////////////////////////////////
+// Abstracts
+///////////////////////////////////////////////////////////////////////////
+
+// Point associated with water temperature
+WaterTempPoint : NumberPoint <abstract> {
+  water
+  temp
+  unit: Unit <quantity:"temperature"> "°F"
+}
+
+// Sensor for water temperature
+WaterTempSensor : WaterTempPoint & SensorPoint <abstract>
+
+// Setpoint for water temperature
+WaterTempSp : WaterTempPoint & SpPoint <abstract>
+
+//////////////////////////////////////////////////////////////////////////
+// Chilled Water Temps
+//////////////////////////////////////////////////////////////////////////
+
+// Chilled Water Entering Temperature Sensor
+ChilledWaterEnteringTempSensor : WaterTempSensor {
+  chilled
+  entering
+}
+
+// Chilled Water Leaving Temperature Sensor
+ChilledWaterLeavingTempSensor : WaterTempSensor {
+  chilled
+  leaving
+}
+
+// Chilled Water Leaving Temperature Setpoint
+ChilledWaterLeavingTempSp : WaterTempSp {
+  chilled
+  leaving
+}
